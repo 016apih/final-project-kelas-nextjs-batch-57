@@ -107,7 +107,7 @@ const ProfileContainer = () => {
          </Box>
 
          <SectionPosts
-            data={data?.slice(0, 10)}
+            data={data?.slice(0, 100)}
             onEdit={(d) => onShowModal('edit', d)}
             onDelete={(d) => onShowModal('delete', d)}
             onLike={d => onLike(d)}
