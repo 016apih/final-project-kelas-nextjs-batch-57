@@ -36,7 +36,9 @@ const HomeContainer = () => {
          await fetchingReplies({
             prefixUrl: data ? `/replies/post/${data?.id}` : "",
          });
-         setFormData(s => ({ ...s, id: data?.id }))
+         setFormData(s => ({ ...s, id: data?.id,
+            fetchingReplies: () => fetchingReplies({ prefixUrl: `/replies/post/${data?.id}` }),
+         }));
          setModal({ isOpen: true, type, replies: repliesById, isLoadingReplies });
       } else {
          setFormData(data);
@@ -105,15 +107,13 @@ const HomeContainer = () => {
          </Box>
 
          <SectionPosts
-            data={data?.slice(0, 100)}
+            data={data?.slice(0, 10)}
             onEdit={(d) => onShowModal('edit', d)}
             onDelete={(d) => onShowModal('delete', d)}
             onLike={d => onLike(d)}
             onReplies={(d) => onShowModal('replies', d)}
             isLoading={isLoading}
          />
-
-
       </Container>
    )
 }
