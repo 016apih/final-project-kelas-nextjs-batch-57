@@ -29,8 +29,11 @@ const ContainerRegister = () => {
 
    const setShowPassword = () => setIsShow(s => !s);
 
-   const onLogin = async () => {
+   const onRegister = async () => {
       const resp = await useMutate({ prefixUrl: '/register', payload: formdata, title: 'Register' });
+      if(resp.success){
+         router.push('/login')
+      }
    }
 
 
@@ -76,9 +79,9 @@ const ContainerRegister = () => {
                   width="full"
                   colorScheme="messenger"
                   isLoading={isLoadingSubmit}
-                  onClick={onLogin}
+                  onClick={onRegister}
                >
-                  Login
+                  Register
                </Button>
             </FormControl>
             <FormControl>

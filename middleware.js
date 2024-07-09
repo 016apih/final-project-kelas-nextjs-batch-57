@@ -4,6 +4,10 @@ export function middleware (req){
    const pathname = req.nextUrl.pathname;
    const isCookieExist = !!req.cookies.get('stoken');
    const isLoginPath = pathname.startsWith('/login');
+
+   if(!isCookieExist && ['/register'].includes(pathname)){
+      return NextResponse.next();
+   }
    
    if(!isCookieExist && !isLoginPath && !['register'].includes(pathname)){
       console.log(isCookieExist, pathname, isLoginPath)
