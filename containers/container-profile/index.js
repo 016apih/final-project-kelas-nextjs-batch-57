@@ -37,8 +37,11 @@ const ProfileContainer = ({ id }) => {
          setFormData(s => ({ ...s, id: data?.id }))
          setModal({ 
             isOpen: true, type,
-            fetchingReplies: () => fetchingReplies({ prefixUrl: `/replies/post/${data?.id}` }),
             replies: repliesById, isLoadingReplies, 
+            fetchingReplies: () => {
+               fetchingReplies({ prefixUrl: `/replies/post/${data?.id}` });
+               fetchingData({ prefixUrl });
+            },
          });
       } else {
          setFormData(data);
@@ -108,7 +111,7 @@ const ProfileContainer = ({ id }) => {
          </Box>
 
          <SectionPosts
-            data={data?.slice(0, 10)}
+            data={data?.slice(0, 50)}
             onEdit={(d) => onShowModal('edit', d)}
             onDelete={(d) => onShowModal('delete', d)}
             onLike={d => onLike(d)}

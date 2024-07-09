@@ -38,9 +38,9 @@ const SectionReplies = ({ data=[], loading, onClose, onActReplies }) => {
                      </Box>
                      <Spacer />
                      <Box>
-                        <EditIcon w={5} h={5} color="blue.500" 
+                        {/* <EditIcon w={5} h={5} color="blue.500" 
                            onClick={() => onActReplies('edit', d)} 
-                        />
+                        /> */}
                         <DeleteIcon w={5} h={5} color="red.500" 
                            onClick={() => onActReplies('delete', d)}
                         />

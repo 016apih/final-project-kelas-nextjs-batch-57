@@ -36,10 +36,13 @@ const HomeContainer = () => {
          await fetchingReplies({
             prefixUrl: data ? `/replies/post/${data?.id}` : "",
          });
-         setFormData(s => ({ ...s, id: data?.id,
-            fetchingReplies: () => fetchingReplies({ prefixUrl: `/replies/post/${data?.id}` }),
-         }));
-         setModal({ isOpen: true, type, replies: repliesById, isLoadingReplies });
+         setFormData(s => ({ ...s, id: data?.id, }) );
+         setModal({ isOpen: true, type, replies: repliesById, isLoadingReplies,
+            fetchingReplies: () => {
+               fetchingReplies({ prefixUrl: `/replies/post/${data?.id}` });
+               fetchingData({ prefixUrl: "/posts?type=all" });
+            },
+         });
       } else {
          setFormData(data);
          setModal({ isOpen: true, type });
@@ -107,7 +110,7 @@ const HomeContainer = () => {
          </Box>
 
          <SectionPosts
-            data={data?.slice(0, 10)}
+            data={data?.slice(0, 50)}
             onEdit={(d) => onShowModal('edit', d)}
             onDelete={(d) => onShowModal('delete', d)}
             onLike={d => onLike(d)}
